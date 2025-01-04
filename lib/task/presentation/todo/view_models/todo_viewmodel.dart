@@ -3,8 +3,8 @@ import 'package:taski/erros/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
 
-class TodoViewmodel extends ChangeNotifier {
-  TodoViewmodel(this._tasksRepository);
+class TodoViewModel extends ChangeNotifier {
+  TodoViewModel(this._tasksRepository);
 
   final ITasksRepository _tasksRepository;
 

@@ -7,12 +7,12 @@ import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 class SearchViewmodel extends ChangeNotifier {
   SearchViewmodel({
     required ITasksRepository tasksRepository,
-    required TodoViewmodel todoViewmodel,
+    required TodoViewModel todoViewmodel,
   })  : _tasksRepository = tasksRepository,
         _todoViewmodel = todoViewmodel;
 
   final ITasksRepository _tasksRepository;
-  final TodoViewmodel _todoViewmodel;
+  final TodoViewModel _todoViewmodel;
 
   String _searchText = '';
   bool _isLoading = false;

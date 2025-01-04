@@ -7,11 +7,11 @@ import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 class DoneViewmodel extends ChangeNotifier {
   DoneViewmodel({
     required ITasksRepository tasksRepository,
-    required TodoViewmodel todoViewmodel,
+    required TodoViewModel todoViewmodel,
   })  : _tasksRepository = tasksRepository,
         _todoViewmodel = todoViewmodel;
 
-  final TodoViewmodel _todoViewmodel;
+  final TodoViewModel _todoViewmodel;
   final ITasksRepository _tasksRepository;
 
   int _page = 0;

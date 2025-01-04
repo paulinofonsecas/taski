@@ -18,5 +18,5 @@ Future<void> initDependencies() async {
     ..registerSingleton<ITasksRepository>(TasksRepository(getIt()))
 
     // viewmodels
-    ..registerLazySingleton(() => TodoViewmodel(getIt()));
+    ..registerLazySingleton(() => TodoViewModel(getIt()));
 }

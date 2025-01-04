@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:taski/dependencies.dart';
 import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 import 'package:taski/task/presentation/todo/widgets/task_widget.dart';
 import 'package:taski/task/presentation/widgets/custom_header_widget.dart';
 import 'package:taski/task/presentation/widgets/empty_task_list_widget.dart';
 
 class TodoBody extends StatefulWidget {
-  const TodoBody({super.key});
+  const TodoBody({required this.viewModel, super.key});
+
+  final TodoViewModel viewModel;
 
   @override
   State<TodoBody> createState() => _TodoBodyState();
 }
 
 class _TodoBodyState extends State<TodoBody> {
-  late final TodoViewmodel viewModel;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    viewModel = getIt();
-    viewModel.loadMoreTasks();
+    widget.viewModel.loadMoreTasks();
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        viewModel.loadMoreTasks();
+        widget.viewModel.loadMoreTasks();
       }
     });
 
@@ -43,22 +42,24 @@ class _TodoBodyState extends State<TodoBody> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: ListenableBuilder(
-          listenable: viewModel,
+          listenable: widget.viewModel,
           builder: (context, _) {
-            if (viewModel.tasks.isEmpty) {
-              return const Column(
+            if (widget.viewModel.tasks.isEmpty) {
+              return Column(
                 children: [
-                  CustomHeaderWidget(),
-                  Expanded(child: Center(child: EmptyTaskListWidget())),
+                  CustomHeaderWidget(viewModel: widget.viewModel),
+                  const Expanded(child: Center(child: EmptyTaskListWidget())),
                 ],
               );
             }
 
-            if (viewModel.isLoading) {
-              return const Column(
+            if (widget.viewModel.isLoading) {
+              return Column(
                 children: [
-                  CustomHeaderWidget(),
-                  Expanded(child: Center(child: CircularProgressIndicator())),
+                  CustomHeaderWidget(viewModel: widget.viewModel),
+                  const Expanded(
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                 ],
               );
             }
@@ -67,18 +68,18 @@ class _TodoBodyState extends State<TodoBody> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               slivers: [
-                const SliverToBoxAdapter(
-                  child: CustomHeaderWidget(),
+                SliverToBoxAdapter(
+                  child: CustomHeaderWidget(viewModel: widget.viewModel),
                 ),
                 SliverList.builder(
-                  itemCount: viewModel.tasks.length,
+                  itemCount: widget.viewModel.tasks.length,
                   itemBuilder: (_, index) {
-                    final task = viewModel.tasks[index];
+                    final task = widget.viewModel.tasks[index];
 
                     return TaskWidget(
                       key: ValueKey(task.id),
                       task: task,
-                      toggle: () => viewModel.toggleTask(task),
+                      toggle: () => widget.viewModel.toggleTask(task),
                     );
                   },
                 ),

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taski/dependencies.dart';
-import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
+import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 
 class CustomHeaderWidget extends StatelessWidget {
   const CustomHeaderWidget({
+    required this.viewModel,
     super.key,
   });
 
+  final TodoViewModel viewModel;
+
   @override
   Widget build(BuildContext context) {
-    final viewModel = getIt<TodoViewmodel>();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

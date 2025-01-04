@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/dependencies.dart';
 import 'package:taski/task/presentation/todo/widgets/todo_body.dart';
 
 class TodoPage extends StatelessWidget {
@@ -18,6 +19,8 @@ class TodoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TodoBody();
+    return TodoBody(
+      viewModel: getIt(),
+    );
   }
 }
