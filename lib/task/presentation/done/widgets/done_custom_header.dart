@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
+import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 
 class DoneCustomHeader extends StatelessWidget {
   const DoneCustomHeader({
@@ -11,7 +11,7 @@ class DoneCustomHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<DoneViewmodel>();
+    final viewModel = context.read<DoneViewModel>();
 
     return Column(
       children: [

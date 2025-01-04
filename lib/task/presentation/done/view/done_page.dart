@@ -19,7 +19,7 @@ class DonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => DoneViewmodel(
+      create: (context) => DoneViewModel(
         tasksRepository: getIt(),
         todoViewmodel: getIt(),
       ),
@@ -39,6 +39,8 @@ class DoneView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DoneBody();
+    return DoneBody(
+      viewModel: context.read<DoneViewModel>(),
+    );
   }
 }

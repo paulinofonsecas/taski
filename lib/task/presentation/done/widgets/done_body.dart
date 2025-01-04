@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:taski/task/presentation/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
 import 'package:taski/task/presentation/done/widgets/done_custom_header.dart';
 import 'package:taski/task/presentation/done/widgets/task_done_widget.dart';
+import 'package:taski/task/presentation/widgets/empty_task_list_widget.dart';
 
 class DoneBody extends StatefulWidget {
-  const DoneBody({super.key});
+  const DoneBody({required this.viewModel, super.key});
+
+  final DoneViewModel viewModel;
 
   @override
   State<DoneBody> createState() => _DoneBodyState();
 }
 
 class _DoneBodyState extends State<DoneBody> {
-  late final DoneViewmodel viewModel;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    viewModel = context.read();
-
-    viewModel.loadMoreTasks();
+    widget.viewModel.loadMoreTasks();
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        viewModel.loadMoreTasks();
+        widget.viewModel.loadMoreTasks();
       }
     });
 
@@ -45,9 +43,9 @@ class _DoneBodyState extends State<DoneBody> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: ListenableBuilder(
-          listenable: viewModel,
+          listenable: widget.viewModel,
           builder: (context, _) {
-            if (viewModel.isLoading) {
+            if (widget.viewModel.isLoading) {
               return const Column(
                 children: [
                   DoneCustomHeader(),
@@ -56,7 +54,7 @@ class _DoneBodyState extends State<DoneBody> {
               );
             }
 
-            if (viewModel.tasks.isEmpty) {
+            if (widget.viewModel.tasks.isEmpty) {
               return const Column(
                 children: [
                   DoneCustomHeader(),
@@ -73,14 +71,14 @@ class _DoneBodyState extends State<DoneBody> {
                   child: DoneCustomHeader(),
                 ),
                 SliverList.builder(
-                  itemCount: viewModel.tasks.length,
+                  itemCount: widget.viewModel.tasks.length,
                   itemBuilder: (_, index) {
-                    final task = viewModel.tasks[index];
+                    final task = widget.viewModel.tasks[index];
 
                     return TaskDoneWidget(
                       key: ValueKey(task.id),
                       task: task,
-                      toggle: () => viewModel.toggleTask(task),
+                      toggle: () => widget.viewModel.toggleTask(task),
                       onDeleteTap: () {
                         // ignore: inference_failure_on_function_invocation
                         showDialog(
@@ -102,7 +100,7 @@ class _DoneBodyState extends State<DoneBody> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  viewModel.deleteTask(task);
+                                  widget.viewModel.deleteTask(task);
                                   Navigator.pop(context);
                                 },
                               ),

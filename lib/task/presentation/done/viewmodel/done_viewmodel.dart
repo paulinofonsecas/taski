@@ -4,8 +4,8 @@ import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
 import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 
-class DoneViewmodel extends ChangeNotifier {
-  DoneViewmodel({
+class DoneViewModel extends ChangeNotifier {
+  DoneViewModel({
     required ITasksRepository tasksRepository,
     required TodoViewModel todoViewmodel,
   })  : _tasksRepository = tasksRepository,

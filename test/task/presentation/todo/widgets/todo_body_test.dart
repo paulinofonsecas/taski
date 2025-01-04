@@ -14,8 +14,7 @@ class MockTasksRepository extends Mock implements ITasksRepository {}
 
 void main() {
   group('Todo page', () {
-    testWidgets('should display CustomHeaderWidget',
-        (tester) async {
+    testWidgets('should display CustomHeaderWidget', (tester) async {
       final tasksRepository = MockTasksRepository();
       final viewModel = TodoViewModel(tasksRepository);
 
@@ -53,6 +52,8 @@ void main() {
         ),
       );
 
+      await tester.pumpAndSettle();
+
       expect(find.byType(EmptyTaskListWidget), findsOneWidget);
       expect(find.text('You have no task listed.'), findsOneWidget);
     });
@@ -83,6 +84,38 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(TaskWidget), findsWidgets);
+    });
+
+    testWidgets('should expand task when task is tapped', (tester) async {
+      final tasksRepository = MockTasksRepository();
+      final viewModel = TodoViewModel(tasksRepository);
+
+      when(() => tasksRepository.fetchTasks(any(), any())).thenAnswer(
+        (_) async => Right([
+          TaskModel.create(title: 'title1', description: 'description'),
+        ]),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: TodoBody(
+              viewModel: viewModel,
+            ),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.text('title1'), findsOneWidget);
+      expect(find.text('description'), findsNothing);
+
+      await tester.tap(find.text('title1'));
+
+      await tester.pumpAndSettle();
+
+      expect(find.text('description'), findsOneWidget);
     });
   });
 }
