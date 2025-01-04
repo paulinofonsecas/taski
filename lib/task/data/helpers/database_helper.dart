@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 class DatabaseHelper {
   static Future<void> _createDb(Database db, int version) async {
@@ -17,8 +19,19 @@ class DatabaseHelper {
   }
 
   static Future<Database> initDatabase() async {
-    final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, 'taski10.db');
+    late String path;
+
+    if (kIsWeb) {
+      databaseFactory = databaseFactoryFfiWeb;
+      path = 'my_web_web.db';
+      return databaseFactoryFfiWeb.openDatabase(
+        path,
+        options: OpenDatabaseOptions(version: 6, onCreate: _createDb),
+      );
+    } else {
+      final databasesPath = await getDatabasesPath();
+      path = join(databasesPath, 'taski10.db');
+    }
 
     return openDatabase(
       path,
@@ -26,16 +39,4 @@ class DatabaseHelper {
       onCreate: _createDb,
     );
   }
-
-  static Future<Database> initTestDb() async {
-    final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, 'taski10.db');
-
-    return openDatabase(
-      path,
-      version: 6,
-      onCreate: _createDb,
-    );
-  }
-
 }

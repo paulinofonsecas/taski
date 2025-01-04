@@ -1,0 +1,30 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "taski-84935",
+          "appId": "1:258630054869:android:9126494ec629ad742a835c",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "taski-84935",
+          "configurations": {
+            "android": "1:258630054869:android:9126494ec629ad742a835c",
+            "web": "1:258630054869:web:abbf266fd86db96b2a835c"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
