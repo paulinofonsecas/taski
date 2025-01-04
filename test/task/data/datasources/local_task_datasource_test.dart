@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:taski/task/data/datasources/local_task_database.dart';
+import 'package:taski/task/data/datasources/local_task_datasource.dart';
 import 'package:taski/task/data/models/task_model.dart';
 
 class MockDatabaseHelper extends Mock implements Database {}
