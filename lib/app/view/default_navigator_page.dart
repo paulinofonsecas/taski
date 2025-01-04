@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taski/app/view/custom_bottom_bar_item.dart';
+import 'package:taski/task/presentation/create/view/create_page.dart';
 import 'package:taski/task/presentation/home/view/home_page.dart';
 
 class DefaultNavigatorPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
             ),
             CustomBottomBarItem(
               onTap: () {
-                _onItemTapped(1);
+                CreatePage.customShowBottomSheet(context);
               },
               label: 'Create',
               iconPath: 'assets/svgs/create.svg',

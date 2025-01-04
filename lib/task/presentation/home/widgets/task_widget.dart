@@ -2,23 +2,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/presentation/home/widgets/task_status_widget.dart';
+import 'package:taski/task/presentation/home/widgets/tree_dots.dart';
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({
+    required this.task,
+    required this.toggle,
     super.key,
   });
+
+  final Task task;
+  final void Function() toggle;
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  bool isSelected = false;
   bool isExpanded = false;
 
-  void toggle() => setState(() => isSelected = !isSelected);
   void toggleExpand() => setState(() => isExpanded = !isExpanded);
+
+  String getSuficientTodo(String todo) {
+    if (todo.length > 32) {
+      return '${todo.substring(0, 32)}...';
+    } else {
+      return todo;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +52,14 @@ class _TaskWidgetState extends State<TaskWidget> {
                 Row(
                   children: [
                     TaskStatusWidget(
-                      isSelected: isSelected,
-                      toggle: toggle,
+                      isSelected: widget.task.isCompleted,
+                      toggle: widget.toggle,
                     ),
                     const SizedBox(width: 16),
                     Text(
-                      'Design usecase page',
+                      getSuficientTodo(widget.task.title),
+                      maxLines: isExpanded ? null : 1,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.urbanist(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -53,79 +68,32 @@ class _TaskWidgetState extends State<TaskWidget> {
                     ),
                   ],
                 ),
-                if (!isExpanded)
+                if (!isExpanded && widget.task.description.isNotEmpty)
                   TreeDots(
                     onTap: toggleExpand,
                   ),
               ],
             ),
-            if (isExpanded) ...[
+            if (isExpanded && widget.task.description.isNotEmpty) ...[
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 42,
                   right: 8,
                 ),
-                child: Text(
-                  "By the time a prospect arrives at your signup page, in most cases, they've already By the time a prospect arrives at your signup page, in most cases.",
-                  style: GoogleFonts.urbanist(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xff8D9CB8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.task.description,
+                    style: GoogleFonts.urbanist(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xff8D9CB8),
+                    ),
                   ),
                 ),
               ),
             ],
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class TreeDots extends StatelessWidget {
-  const TreeDots({
-    required this.onTap,
-    super.key,
-  });
-
-  final GestureTapCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        width: 24,
-        height: 24,
-        child: Row(
-          children: [
-            Container(
-              width: 4,
-              height: 4,
-              decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(width: 3),
-            Container(
-              width: 4,
-              height: 4,
-              decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(width: 3),
-            Container(
-              width: 4,
-              height: 4,
-              decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
           ],
         ),
       ),

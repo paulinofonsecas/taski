@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:taski/task/presentation/home/widgets/custom_app_bar.dart';
-
+import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
+import 'package:taski/task/presentation/home/widgets/custom_header_widget.dart';
+import 'package:taski/task/presentation/home/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/home/widgets/task_widget.dart';
 
 /// {@template home_body}
@@ -9,71 +9,82 @@ import 'package:taski/task/presentation/home/widgets/task_widget.dart';
 ///
 /// Add what it does
 /// {@endtemplate}
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   /// {@macro home_body}
-  const HomeBody({super.key});
+  const HomeBody({required this.viewModel, super.key});
+
+  final HomeViewmodel viewModel;
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    widget.viewModel.loadMoreTasks();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        widget.viewModel.loadMoreTasks();
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(26),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CustomAppBar(),
-              const SizedBox(height: 32),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 26),
+        child: ListenableBuilder(
+          listenable: widget.viewModel,
+          builder: (context, _) {
+            if (widget.viewModel.tasks.isEmpty) {
+              return const Column(
                 children: [
-                  buildRichText(),
-                  const SizedBox(height: 10),
-                  Text(
-                    'You’ve got 7 tasks to do.',
-                    style: GoogleFonts.urbanist(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xff8D9CB8),
-                    ),
-                  ),
+                  CustomHeaderWidget(),
+                  Expanded(child: Center(child: EmptyTaskListWidget())),
                 ],
-              ),
-              const SizedBox(height: 32),
-              ...List.generate(
-                30,
-                (index) => const TaskWidget(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+              );
+            }
 
-  Text buildRichText() {
-    return Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-            text: 'Welcome, ',
-            style: GoogleFonts.urbanist(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          TextSpan(
-            text: 'John',
-            style: GoogleFonts.urbanist(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff007FFF),
-            ),
-          ),
-          const TextSpan(
-            text: '.',
-          ),
-        ],
+            return CustomScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                const SliverToBoxAdapter(
+                  child: CustomHeaderWidget(),
+                ),
+                if (widget.viewModel.tasks.isEmpty)
+                  const SliverToBoxAdapter(child: EmptyTaskListWidget())
+                else
+                  SliverList.builder(
+                    itemCount: widget.viewModel.tasks.length,
+                    itemBuilder: (_, index) {
+                      final task = widget.viewModel.tasks[index];
+
+                      return TaskWidget(
+                        key: ValueKey(task.id),
+                        task: task,
+                        toggle: () => widget.viewModel.toggleTask(task.id),
+                      );
+                    },
+                  ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

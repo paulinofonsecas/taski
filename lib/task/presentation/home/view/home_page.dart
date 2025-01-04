@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taski/task/presentation/home/bloc/bloc.dart';
+import 'package:taski/dependencies.dart';
+import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
 import 'package:taski/task/presentation/home/widgets/home_body.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,21 +12,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(),
-      child: const Scaffold(
-        backgroundColor: Colors.white,
-        body: HomeView(),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: HomeView(
+        viewModel: getIt(),
       ),
     );
   }
 }
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  const HomeView({required this.viewModel, super.key});
+
+  final HomeViewmodel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    return const HomeBody();
+    return HomeBody(
+      viewModel: viewModel,
+    );
   }
 }
