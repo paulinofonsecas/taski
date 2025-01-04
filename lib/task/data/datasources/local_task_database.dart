@@ -108,4 +108,17 @@ class LocalTaskDatasource implements ITaskDatasource {
 
     return Right(result.map(TaskModel.fromMap).toList());
   }
+
+  @override
+  Future<Either<Failure, void>> deleteAllCompletedTasks() async {
+    final db = _database;
+
+    // delete all completed tasks
+    await db.delete(
+      'tasks',
+      where: 'isCompleted = 1',
+    );
+
+    return const Right(null);
+  }
 }

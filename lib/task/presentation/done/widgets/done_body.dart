@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:taski/task/presentation/commom/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
@@ -80,6 +81,35 @@ class _DoneBodyState extends State<DoneBody> {
                       key: ValueKey(task.id),
                       task: task,
                       toggle: () => viewModel.toggleTask(task),
+                      onDeleteTap: () {
+                        // ignore: inference_failure_on_function_invocation
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Excluir tarefa'),
+                            content:
+                                const Text('Tem certeza que deseja excluir?'),
+                            actions: [
+                              TextButton(
+                                child: const Text('Cancelar'),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                              TextButton(
+                                child: Text(
+                                  'Excluir',
+                                  style: GoogleFonts.urbanist(
+                                    color: const Color(0xffFF5E5E),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  viewModel.deleteTask(task);
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

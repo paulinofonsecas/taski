@@ -65,4 +65,26 @@ class DoneViewmodel extends ChangeNotifier {
 
     return loadMoreTasks();
   }
+
+  Future<void> deleteTask(Task task) async {
+    final result = await _tasksRepository.deleteTask(task.id);
+
+    if (result.isLeft) {
+      showError(result.left);
+    }
+
+    await homeViewModel.reloadTasks();
+    return reloadTasks();
+  }
+
+  Future<void> deleteAllTasks() async {
+    final result = await _tasksRepository.deleteAllCompletedTasks();
+
+    if (result.isLeft) {
+      showError(result.left);
+    }
+
+    await homeViewModel.reloadTasks();
+    return reloadTasks();
+  }
 }

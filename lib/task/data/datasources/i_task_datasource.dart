@@ -7,6 +7,7 @@ abstract class ITaskDatasource {
   Future<Either<Failure, void>> createTask(TaskModel task);
   Future<Either<Failure, void>> toggleTask(TaskModel task);
   Future<Either<Failure, void>> deleteTask(int id);
+  Future<Either<Failure, void>> deleteAllCompletedTasks();
   Future<Either<Failure, List<Task>>> searchTasks(String text);
   Future<Either<Failure, List<TaskModel>>> fetchTasks(int page, int limit);
   Future<Either<Failure, List<TaskModel>>> fetchCompletedTasks(

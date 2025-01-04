@@ -8,11 +8,13 @@ class TaskDoneWidget extends StatefulWidget {
   const TaskDoneWidget({
     required this.task,
     required this.toggle,
+    required this.onDeleteTap,
     super.key,
   });
 
   final Task task;
   final void Function() toggle;
+  final GestureTapCallback onDeleteTap;
 
   @override
   State<TaskDoneWidget> createState() => _TaskDoneWidgetState();
@@ -64,8 +66,9 @@ class _TaskDoneWidgetState extends State<TaskDoneWidget> {
                   ),
                 ],
               ),
-              const SvgButton(
+              SvgButton(
                 iconPath: 'assets/svgs/trash.svg',
+                onTap: widget.onDeleteTap,
               ),
             ],
           ),
@@ -78,22 +81,27 @@ class _TaskDoneWidgetState extends State<TaskDoneWidget> {
 class SvgButton extends StatelessWidget {
   const SvgButton({
     required this.iconPath,
+    required this.onTap,
     super.key,
   });
 
+  final GestureTapCallback onTap;
   final String iconPath;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 6,
-        vertical: 4,
-      ),
-      child: SvgPicture.asset(
-        iconPath,
-        width: 12,
-        height: 16,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 6,
+          vertical: 4,
+        ),
+        child: SvgPicture.asset(
+          iconPath,
+          width: 12,
+          height: 16,
+        ),
       ),
     );
   }
