@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taski/app/view/custom_bottom_bar_item.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
+import 'package:taski/task/presentation/done/view/done_page.dart';
 import 'package:taski/task/presentation/home/view/home_page.dart';
 
 class DefaultNavigatorPage extends StatefulWidget {
@@ -15,9 +16,9 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Center(child: Text('Tela de CREATE')),
+    SizedBox(),
     Center(child: Text('Tela de SEARCH')),
-    Center(child: Text('Tela de DONE')),
+    DonePage(),
   ];
 
   void _onItemTapped(int index) {

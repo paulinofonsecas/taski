@@ -25,11 +25,9 @@ class _TaskStatusWidgetState extends State<TaskStatusWidget> {
         height: 24,
         decoration: BoxDecoration(
           color:
-              widget.isSelected ? const Color(0xff007FFF) : Colors.transparent,
+              widget.isSelected ? const Color(0xffC6CFDC) : Colors.transparent,
           border: Border.all(
-            color: widget.isSelected
-                ? const Color(0xff007FFF)
-                : const Color(0xffC6CFDC),
+            color: const Color(0xffC6CFDC),
             width: 2,
           ),
           borderRadius: BorderRadius.circular(7),

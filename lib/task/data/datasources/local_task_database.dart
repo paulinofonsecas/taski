@@ -61,19 +61,37 @@ class LocalTaskDatasource implements ITaskDatasource {
   }
 
   @override
-  Future<Either<Failure, void>> toggleTask(int id) async {
+  Future<Either<Failure, void>> toggleTask(TaskModel task) async {
     final db = _database;
 
     await db.update(
       'tasks',
       {
-        'isCompleted': 1,
+        'isCompleted': task.isCompleted ? 0 : 1,
         'completedAt': DateTime.now().toIso8601String(),
       },
       where: 'id = ?',
-      whereArgs: [id],
+      whereArgs: [task.id],
     );
 
     return const Right(null);
+  }
+
+  @override
+  Future<Either<Failure, List<TaskModel>>> fetchCompletedTasks(
+    int page,
+    int limit,
+  ) async {
+    final db = _database;
+
+    final result = await db.query(
+      'tasks',
+      limit: limit,
+      offset: page * limit,
+      orderBy: 'completedAt DESC',
+      where: 'isCompleted = 1',
+    );
+
+    return Right(result.map(TaskModel.fromMap).toList());
   }
 }

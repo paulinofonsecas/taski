@@ -69,7 +69,7 @@ class TaskModel extends Task {
       createdAt: DateTime.parse(map['createdAt'] as String),
       updatedAt: DateTime.parse(map['updatedAt'] as String),
       completedAt: map['completedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['completedAt'] as int)
+          ? DateTime.parse(map['completedAt'] as String)
           : null,
     );
   }

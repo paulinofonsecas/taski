@@ -1,11 +1,13 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
+import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
 
-class HomeViewmodel extends ChangeNotifier {
-  HomeViewmodel(this._tasksRepository);
+class DoneViewmodel extends ChangeNotifier {
+  DoneViewmodel(this._tasksRepository, this.homeViewModel);
 
+  final HomeViewmodel homeViewModel;
   final ITasksRepository _tasksRepository;
 
   int _page = 0;
@@ -26,7 +28,7 @@ class HomeViewmodel extends ChangeNotifier {
       notifyListeners();
     }
 
-    final newTasks = await _tasksRepository.fetchTasks(_page, _limit);
+    final newTasks = await _tasksRepository.fetchCompletedTasks(_page, _limit);
 
     if (newTasks.isLeft) {
       print(newTasks.left.message);
@@ -50,7 +52,7 @@ class HomeViewmodel extends ChangeNotifier {
     if (result.isLeft) {
       showError(result.left);
     }
-
+    await homeViewModel.reloadTasks();
     return reloadTasks();
   }
 

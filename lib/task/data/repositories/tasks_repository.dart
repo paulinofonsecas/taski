@@ -26,7 +26,12 @@ class TasksRepository implements ITasksRepository {
   }
 
   @override
-  Future<Either<Failure, void>> toggleTask(int id) {
-    return _localDatasource.toggleTask(id);
+  Future<Either<Failure, void>> toggleTask(Task task) {
+    return _localDatasource.toggleTask(TaskModel.fromTask(task));
+  }
+
+  @override
+  Future<Either<Failure, List<Task>>> fetchCompletedTasks(int page, int limit) {
+    return _localDatasource.fetchCompletedTasks(page, limit);
   }
 }

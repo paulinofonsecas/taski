@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:taski/dependencies.dart';
+import 'package:taski/task/presentation/commom/widgets/custom_header_widget.dart';
+import 'package:taski/task/presentation/commom/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
-import 'package:taski/task/presentation/home/widgets/custom_header_widget.dart';
-import 'package:taski/task/presentation/home/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/home/widgets/task_widget.dart';
 
-/// {@template home_body}
-/// Body of the HomePage.
-///
-/// Add what it does
-/// {@endtemplate}
 class HomeBody extends StatefulWidget {
-  /// {@macro home_body}
-  const HomeBody({required this.viewModel, super.key});
-
-  final HomeViewmodel viewModel;
+  const HomeBody({super.key});
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  late final HomeViewmodel viewModel;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    widget.viewModel.loadMoreTasks();
+    viewModel = getIt();
+    viewModel.loadMoreTasks();
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        widget.viewModel.loadMoreTasks();
+        viewModel.loadMoreTasks();
       }
     });
 
@@ -48,13 +43,22 @@ class _HomeBodyState extends State<HomeBody> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: ListenableBuilder(
-          listenable: widget.viewModel,
+          listenable: viewModel,
           builder: (context, _) {
-            if (widget.viewModel.tasks.isEmpty) {
+            if (viewModel.tasks.isEmpty) {
               return const Column(
                 children: [
                   CustomHeaderWidget(),
                   Expanded(child: Center(child: EmptyTaskListWidget())),
+                ],
+              );
+            }
+
+            if (viewModel.tasks.isEmpty) {
+              return const Column(
+                children: [
+                  CustomHeaderWidget(),
+                  Expanded(child: Center(child: CircularProgressIndicator())),
                 ],
               );
             }
@@ -66,21 +70,18 @@ class _HomeBodyState extends State<HomeBody> {
                 const SliverToBoxAdapter(
                   child: CustomHeaderWidget(),
                 ),
-                if (widget.viewModel.tasks.isEmpty)
-                  const SliverToBoxAdapter(child: EmptyTaskListWidget())
-                else
-                  SliverList.builder(
-                    itemCount: widget.viewModel.tasks.length,
-                    itemBuilder: (_, index) {
-                      final task = widget.viewModel.tasks[index];
+                SliverList.builder(
+                  itemCount: viewModel.tasks.length,
+                  itemBuilder: (_, index) {
+                    final task = viewModel.tasks[index];
 
-                      return TaskWidget(
-                        key: ValueKey(task.id),
-                        task: task,
-                        toggle: () => widget.viewModel.toggleTask(task.id),
-                      );
-                    },
-                  ),
+                    return TaskWidget(
+                      key: ValueKey(task.id),
+                      task: task,
+                      toggle: () => viewModel.toggleTask(task),
+                    );
+                  },
+                ),
               ],
             );
           },
