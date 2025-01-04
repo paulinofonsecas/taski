@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
+import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
 
 class SearchViewmodel extends ChangeNotifier {
-  SearchViewmodel(this._tasksRepository);
+  SearchViewmodel({
+    required ITasksRepository tasksRepository,
+    required HomeViewmodel homeViewmodel,
+  })  : _tasksRepository = tasksRepository,
+        _homeViewmodel = homeViewmodel;
 
   final ITasksRepository _tasksRepository;
+  final HomeViewmodel _homeViewmodel;
 
   String _searchText = '';
   bool _isLoading = false;
@@ -28,8 +34,9 @@ class SearchViewmodel extends ChangeNotifier {
       print(newTasks.left.message);
     }
 
-    _tasks.clear();
-    _tasks.addAll(newTasks.right);
+    _tasks
+      ..clear()
+      ..addAll(newTasks.right);
 
     _isLoading = false;
 
@@ -43,6 +50,7 @@ class SearchViewmodel extends ChangeNotifier {
       showError(result.left);
     }
 
+    await _homeViewmodel.reloadTasks();
     return reloadTasks();
   }
 

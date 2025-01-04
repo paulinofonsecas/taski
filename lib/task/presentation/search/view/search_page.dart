@@ -19,7 +19,10 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SearchViewmodel(getIt()),
+      create: (context) => SearchViewmodel(
+        tasksRepository: getIt(),
+        homeViewmodel: getIt(),
+      ),
       child: const Scaffold(
         body: SearchView(),
       ),
