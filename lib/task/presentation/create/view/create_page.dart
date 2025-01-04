@@ -23,8 +23,8 @@ class CreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => CreateViewmodel(
-        getIt(),
-        getIt(),
+        tasksRepository: getIt(),
+        todoViewmodel: getIt(),
       ),
       child: const CreateView(),
     );

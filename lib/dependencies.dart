@@ -5,7 +5,7 @@ import 'package:taski/task/data/datasources/local_task_database.dart';
 import 'package:taski/task/data/helpers/database_helper.dart';
 import 'package:taski/task/data/repositories/tasks_repository.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
-import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
+import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 
 final getIt = GetIt.instance;
 
@@ -18,5 +18,5 @@ Future<void> initDependencies() async {
     ..registerSingleton<ITasksRepository>(TasksRepository(getIt()))
 
     // viewmodels
-    ..registerLazySingleton(() => HomeViewmodel(getIt()));
+    ..registerLazySingleton(() => TodoViewmodel(getIt()));
 }

@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
 
-import 'package:taski/task/presentation/commom/widgets/create_new_task_widget.dart';
+import 'package:taski/task/presentation/widgets/create_new_task_widget.dart';
 
 class EmptyTaskListWidget extends StatelessWidget {
   const EmptyTaskListWidget({

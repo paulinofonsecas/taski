@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:taski/dependencies.dart';
-import 'package:taski/task/presentation/commom/widgets/custom_header_widget.dart';
-import 'package:taski/task/presentation/commom/widgets/empty_task_list_widget.dart';
-import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
-import 'package:taski/task/presentation/home/widgets/task_widget.dart';
+import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
+import 'package:taski/task/presentation/todo/widgets/task_widget.dart';
+import 'package:taski/task/presentation/widgets/custom_header_widget.dart';
+import 'package:taski/task/presentation/widgets/empty_task_list_widget.dart';
 
-class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
+class TodoBody extends StatefulWidget {
+  const TodoBody({super.key});
 
   @override
-  State<HomeBody> createState() => _HomeBodyState();
+  State<TodoBody> createState() => _TodoBodyState();
 }
 
-class _HomeBodyState extends State<HomeBody> {
-  late final HomeViewmodel viewModel;
+class _TodoBodyState extends State<TodoBody> {
+  late final TodoViewmodel viewModel;
   final ScrollController _scrollController = ScrollController();
 
   @override

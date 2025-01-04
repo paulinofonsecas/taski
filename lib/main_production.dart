@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:taski/app/app.dart';
-import 'package:taski/bootstrap.dart';
 
 void main() {
-  bootstrap(() => const App());
+  runApp(const App());
 }

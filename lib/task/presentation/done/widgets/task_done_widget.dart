@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/task/domain/entities/task.dart';
-import 'package:taski/task/presentation/home/widgets/task_status_widget.dart';
+import 'package:taski/task/presentation/todo/widgets/task_status_widget.dart';
 
 class TaskDoneWidget extends StatefulWidget {
   const TaskDoneWidget({

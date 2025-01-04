@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:taski/task/data/models/task_model.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
-import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
+import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 
 class CreateViewmodel extends ChangeNotifier {
-  CreateViewmodel(
-    this._tasksRepository,
-    this._homeViewModel,
-  );
+  CreateViewmodel({
+    required ITasksRepository tasksRepository,
+    required TodoViewmodel todoViewmodel,
+  })  : _tasksRepository = tasksRepository,
+        _todoViewmodel = todoViewmodel;
 
   final ITasksRepository _tasksRepository;
-  final HomeViewmodel _homeViewModel;
+  final TodoViewmodel _todoViewmodel;
 
   // controle de erro
   bool _hasError = false;
@@ -34,6 +35,6 @@ class CreateViewmodel extends ChangeNotifier {
       hasError = true;
     }
 
-    await _homeViewModel.reloadTasks();
+    await _todoViewmodel.reloadTasks();
   }
 }

@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/task/domain/entities/task.dart';
-import 'package:taski/task/presentation/home/widgets/task_status_widget.dart';
-import 'package:taski/task/presentation/home/widgets/tree_dots.dart';
+import 'package:taski/task/presentation/todo/widgets/task_status_widget.dart';
+import 'package:taski/task/presentation/todo/widgets/tree_dots.dart';
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({

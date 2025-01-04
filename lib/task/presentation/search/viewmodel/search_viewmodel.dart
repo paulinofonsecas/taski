@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
-import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
+import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 
 class SearchViewmodel extends ChangeNotifier {
   SearchViewmodel({
     required ITasksRepository tasksRepository,
-    required HomeViewmodel homeViewmodel,
+    required TodoViewmodel todoViewmodel,
   })  : _tasksRepository = tasksRepository,
-        _homeViewmodel = homeViewmodel;
+        _todoViewmodel = todoViewmodel;
 
   final ITasksRepository _tasksRepository;
-  final HomeViewmodel _homeViewmodel;
+  final TodoViewmodel _todoViewmodel;
 
   String _searchText = '';
   bool _isLoading = false;
@@ -50,7 +50,7 @@ class SearchViewmodel extends ChangeNotifier {
       showError(result.left);
     }
 
-    await _homeViewmodel.reloadTasks();
+    await _todoViewmodel.reloadTasks();
     return reloadTasks();
   }
 

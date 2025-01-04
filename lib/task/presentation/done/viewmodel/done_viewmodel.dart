@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
-import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
+import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 
 class DoneViewmodel extends ChangeNotifier {
-  DoneViewmodel(this._tasksRepository, this.homeViewModel);
+  DoneViewmodel({
+    required ITasksRepository tasksRepository,
+    required TodoViewmodel todoViewmodel,
+  })  : _tasksRepository = tasksRepository,
+        _todoViewmodel = todoViewmodel;
 
-  final HomeViewmodel homeViewModel;
+  final TodoViewmodel _todoViewmodel;
   final ITasksRepository _tasksRepository;
 
   int _page = 0;
@@ -52,7 +56,7 @@ class DoneViewmodel extends ChangeNotifier {
     if (result.isLeft) {
       showError(result.left);
     }
-    await homeViewModel.reloadTasks();
+    await _todoViewmodel.reloadTasks();
     return reloadTasks();
   }
 
@@ -73,7 +77,7 @@ class DoneViewmodel extends ChangeNotifier {
       showError(result.left);
     }
 
-    await homeViewModel.reloadTasks();
+    await _todoViewmodel.reloadTasks();
     return reloadTasks();
   }
 
@@ -84,7 +88,7 @@ class DoneViewmodel extends ChangeNotifier {
       showError(result.left);
     }
 
-    await homeViewModel.reloadTasks();
+    await _todoViewmodel.reloadTasks();
     return reloadTasks();
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/task/presentation/create/viewmodel/create_viewmodel.dart';
-import 'package:taski/task/presentation/home/widgets/un_checked_box_widget.dart';
+import 'package:taski/task/presentation/todo/widgets/un_checked_box_widget.dart';
 
 /// {@template create_body}
 /// Body of the CreatePage.

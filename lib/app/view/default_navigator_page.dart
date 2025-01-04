@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taski/app/view/custom_bottom_bar_item.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
 import 'package:taski/task/presentation/done/view/done_page.dart';
-import 'package:taski/task/presentation/home/view/home_page.dart';
+import 'package:taski/task/presentation/todo/view/todo_page.dart';
 import 'package:taski/task/presentation/search/view/search_page.dart';
 
 class DefaultNavigatorPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    TodoPage(),
     SizedBox(),
     SearchPage(),
     DonePage(),

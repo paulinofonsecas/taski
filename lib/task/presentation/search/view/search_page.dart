@@ -21,7 +21,7 @@ class SearchPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => SearchViewmodel(
         tasksRepository: getIt(),
-        homeViewmodel: getIt(),
+        todoViewmodel: getIt(),
       ),
       child: const Scaffold(
         body: SearchView(),

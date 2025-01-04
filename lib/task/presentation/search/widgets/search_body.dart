@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:taski/task/presentation/home/widgets/task_widget.dart';
+import 'package:taski/task/presentation/todo/widgets/task_widget.dart';
 import 'package:taski/task/presentation/search/viewmodel/search_viewmodel.dart';
 import 'package:taski/task/presentation/search/widgets/empty_task_widget.dart';
 import 'package:taski/task/presentation/search/widgets/search_custom_header.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:taski/task/presentation/commom/widgets/empty_task_list_widget.dart';
+import 'package:taski/task/presentation/widgets/empty_task_list_widget.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
 import 'package:taski/task/presentation/done/widgets/done_custom_header.dart';
 import 'package:taski/task/presentation/done/widgets/task_done_widget.dart';

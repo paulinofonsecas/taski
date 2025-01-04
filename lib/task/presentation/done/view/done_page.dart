@@ -20,8 +20,8 @@ class DonePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => DoneViewmodel(
-        getIt(),
-        getIt(),
+        tasksRepository: getIt(),
+        todoViewmodel: getIt(),
       ),
       child: const Scaffold(
         body: DoneView(),

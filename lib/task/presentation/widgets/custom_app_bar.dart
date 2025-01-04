@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taski/task/presentation/home/widgets/custom_image_widget.dart';
+import 'package:taski/task/presentation/todo/widgets/custom_image_widget.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
