@@ -17,12 +17,13 @@ class TaskModel extends Task {
   factory TaskModel.create({
     required String title,
     required String description,
+    bool isCompleted = false,
   }) {
     return TaskModel(
       id: 0,
       title: title,
       description: description,
-      isCompleted: false,
+      isCompleted: isCompleted,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
