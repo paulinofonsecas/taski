@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
 import 'package:taski/task/presentation/done/widgets/done_custom_header.dart';
 import 'package:taski/task/presentation/done/widgets/task_done_widget.dart';
@@ -96,7 +97,7 @@ class _DoneBodyState extends State<DoneBody> {
                                 child: Text(
                                   'Excluir',
                                   style: GoogleFonts.urbanist(
-                                    color: const Color(0xffFF5E5E),
+                                    color: kFireRed,
                                   ),
                                 ),
                                 onPressed: () {

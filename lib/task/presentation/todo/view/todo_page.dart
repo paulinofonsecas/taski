@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taski/dependencies.dart';
+import 'package:taski/core/config/dependencies.dart';
 import 'package:taski/task/presentation/todo/widgets/todo_body.dart';
 
 class TodoPage extends StatelessWidget {

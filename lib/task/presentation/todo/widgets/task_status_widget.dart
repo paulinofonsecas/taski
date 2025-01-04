@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taski/core/theme/colors.dart';
 
 class TaskStatusWidget extends StatefulWidget {
   const TaskStatusWidget({
@@ -24,10 +25,9 @@ class _TaskStatusWidgetState extends State<TaskStatusWidget> {
         width: 24,
         height: 24,
         decoration: BoxDecoration(
-          color:
-              widget.isSelected ? const Color(0xffC6CFDC) : Colors.transparent,
+          color: widget.isSelected ? kMutedAzure : Colors.transparent,
           border: Border.all(
-            color: const Color(0xffC6CFDC),
+            color: kMutedAzure,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(7),

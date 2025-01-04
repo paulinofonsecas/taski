@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
-
 import 'package:taski/task/presentation/widgets/create_new_task_widget.dart';
 
 class EmptyTaskListWidget extends StatelessWidget {
@@ -22,7 +22,7 @@ class EmptyTaskListWidget extends StatelessWidget {
           style: GoogleFonts.urbanist(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: const Color(0xff8D9CB8),
+            color: kSlateBlue,
           ),
         ),
         const SizedBox(height: 28),

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:either_dart/either.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:taski/erros/failure.dart';
+import 'package:taski/core/error/failure.dart';
 import 'package:taski/task/data/datasources/i_task_datasource.dart';
 import 'package:taski/task/data/models/task_model.dart';
 import 'package:taski/task/domain/entities/task.dart';

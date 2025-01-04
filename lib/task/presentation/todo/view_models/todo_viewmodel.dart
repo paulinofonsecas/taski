@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:taski/erros/failure.dart';
+import 'package:taski/core/error/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/domain/repositories/i_tasks_repository.dart';
 

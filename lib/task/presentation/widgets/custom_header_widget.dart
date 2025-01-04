@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/todo/view_models/todo_viewmodel.dart';
 import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 
@@ -37,7 +38,7 @@ class CustomHeaderWidget extends StatelessWidget {
                     style: GoogleFonts.urbanist(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: const Color(0xff007FFF),
+                      color: kBlue,
                     ),
                   ),
                   const TextSpan(
@@ -56,7 +57,7 @@ class CustomHeaderWidget extends StatelessWidget {
                   style: GoogleFonts.urbanist(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: const Color(0xff8D9CB8),
+                    color: kSlateBlue,
                   ),
                 );
               },

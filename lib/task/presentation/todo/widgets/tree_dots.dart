@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/core/theme/colors.dart';
 
 class TreeDots extends StatelessWidget {
   const TreeDots({
@@ -21,7 +22,7 @@ class TreeDots extends StatelessWidget {
               width: 4,
               height: 4,
               decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
+                color: kMutedAzure,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -30,7 +31,7 @@ class TreeDots extends StatelessWidget {
               width: 4,
               height: 4,
               decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
+                color: kMutedAzure,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -39,7 +40,7 @@ class TreeDots extends StatelessWidget {
               width: 4,
               height: 4,
               decoration: BoxDecoration(
-                color: const Color(0xffC6CFDC),
+                color: kMutedAzure,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),

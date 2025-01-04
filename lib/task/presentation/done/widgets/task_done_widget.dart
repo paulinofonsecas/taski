@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/domain/entities/task.dart';
 import 'package:taski/task/presentation/todo/widgets/task_status_widget.dart';
 
@@ -39,7 +40,7 @@ class _TaskDoneWidgetState extends State<TaskDoneWidget> {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color(0xffF5F7F9),
+        color: kPaleWhite,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -61,7 +62,7 @@ class _TaskDoneWidgetState extends State<TaskDoneWidget> {
                     style: GoogleFonts.urbanist(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xff3F3D56),
+                      color: kSlatePurple,
                     ),
                   ),
                 ],

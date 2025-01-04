@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 
 class CreateNewTaskWidget extends StatelessWidget {
   const CreateNewTaskWidget({
@@ -21,7 +22,7 @@ class CreateNewTaskWidget extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: const Color(0xff007FFF).withValues(alpha: .10),
+          color: kBlue.withValues(alpha: .10),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:taski/dependencies.dart';
+import 'package:taski/core/config/dependencies.dart';
 import 'package:taski/task/presentation/search/viewmodel/search_viewmodel.dart';
 import 'package:taski/task/presentation/search/widgets/search_body.dart';
 

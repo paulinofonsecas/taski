@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/search/viewmodel/search_viewmodel.dart';
 
 class CustomTextFieldWidget extends StatefulWidget {
@@ -45,7 +46,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff007FFF).withValues(
+            color: kBlue.withValues(
               alpha: .5,
             ),
             spreadRadius: 2,
@@ -73,7 +74,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                 hintStyle: GoogleFonts.urbanist(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xff3F3D56),
+                  color: kSlatePurple,
                 ),
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:taski/erros/failure.dart';
+import 'package:taski/core/error/failure.dart';
 import 'package:taski/task/domain/entities/task.dart';
 
 abstract class ITasksRepository {

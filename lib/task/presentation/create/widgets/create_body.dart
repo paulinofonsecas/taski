@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/create/viewmodel/create_viewmodel.dart';
 import 'package:taski/task/presentation/todo/widgets/un_checked_box_widget.dart';
 
@@ -64,7 +65,7 @@ class _CreateBodyState extends State<CreateBody> {
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xffc6cfdc).withValues(alpha: .50),
+              color: kMutedAzure.withValues(alpha: .50),
               blurRadius: 24,
               offset: const Offset(0, -6),
             ),
@@ -103,7 +104,7 @@ class _CreateBodyState extends State<CreateBody> {
                   style: GoogleFonts.urbanist(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: const Color(0xff007FFF),
+                    color: kBlue,
                   ),
                 ),
               ),
@@ -150,7 +151,7 @@ class TodoTextInput extends StatelessWidget {
               hintStyle: GoogleFonts.urbanist(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: const Color(0xffC6CFDC),
+                color: kMutedAzure,
               ),
             ),
           ),
@@ -190,7 +191,7 @@ class NoteTextInput extends StatelessWidget {
               hintStyle: GoogleFonts.urbanist(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: const Color(0xffC6CFDC),
+                color: kMutedAzure,
               ),
             ),
           ),

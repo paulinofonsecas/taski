@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:taski/app/view/custom_bottom_bar_item.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
 import 'package:taski/task/presentation/done/view/done_page.dart';
-import 'package:taski/task/presentation/todo/view/todo_page.dart';
 import 'package:taski/task/presentation/search/view/search_page.dart';
+import 'package:taski/task/presentation/todo/view/todo_page.dart';
 
 class DefaultNavigatorPage extends StatefulWidget {
   const DefaultNavigatorPage({super.key});
@@ -48,11 +49,11 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 100,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.white,
           border: Border(
             top: BorderSide(
-              color: Color(0xffF5F7F9),
+              color: kPaleWhite,
               width: 2,
             ),
           ),
@@ -66,9 +67,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
               },
               label: 'Todo',
               iconPath: 'assets/svgs/todo.svg',
-              color: _selectedIndex == 0
-                  ? const Color(0xff007FFF)
-                  : const Color(0xffC6CFDC),
+              color: _selectedIndex == 0 ? kBlue : kMutedAzure,
             ),
             CustomBottomBarItem(
               onTap: () {
@@ -76,9 +75,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
               },
               label: 'Create',
               iconPath: 'assets/svgs/create.svg',
-              color: _selectedIndex == 1
-                  ? const Color(0xff007FFF)
-                  : const Color(0xffC6CFDC),
+              color: _selectedIndex == 1 ? kBlue : kMutedAzure,
             ),
             CustomBottomBarItem(
               onTap: () {
@@ -86,9 +83,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
               },
               label: 'Search',
               iconPath: 'assets/svgs/search.svg',
-              color: _selectedIndex == 2
-                  ? const Color(0xff007FFF)
-                  : const Color(0xffC6CFDC),
+              color: _selectedIndex == 2 ? kBlue : kMutedAzure,
             ),
             CustomBottomBarItem(
               onTap: () {
@@ -96,9 +91,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
               },
               label: 'Done',
               iconPath: 'assets/svgs/done.svg',
-              color: _selectedIndex == 3
-                  ? const Color(0xff007FFF)
-                  : const Color(0xffC6CFDC),
+              color: _selectedIndex == 3 ? kBlue : kMutedAzure,
             ),
           ],
         ),

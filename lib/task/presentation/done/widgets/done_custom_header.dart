@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:taski/core/theme/colors.dart';
 import 'package:taski/task/presentation/done/viewmodel/done_viewmodel.dart';
 import 'package:taski/task/presentation/widgets/custom_app_bar.dart';
 
@@ -47,7 +48,7 @@ class DoneCustomHeader extends StatelessWidget {
                           child: Text(
                             'Erase',
                             style: GoogleFonts.urbanist(
-                              color: const Color(0xffFF5E5E),
+                              color: kFireRed,
                             ),
                           ),
                           onPressed: () {
@@ -64,7 +65,7 @@ class DoneCustomHeader extends StatelessWidget {
                   style: GoogleFonts.urbanist(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xffFF5E5E),
+                    color: kFireRed,
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taski/core/theme/colors.dart';
 
 class UnCheckedBoxWidget extends StatelessWidget {
   const UnCheckedBoxWidget({super.key});
@@ -11,7 +12,7 @@ class UnCheckedBoxWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: Border.all(
-          color: const Color(0xffC6CFDC),
+          color: kMutedAzure,
           width: 2,
         ),
         borderRadius: BorderRadius.circular(7),
