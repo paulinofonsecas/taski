@@ -54,7 +54,7 @@ class _HomeBodyState extends State<HomeBody> {
               );
             }
 
-            if (viewModel.tasks.isEmpty) {
+            if (viewModel.isLoading) {
               return const Column(
                 children: [
                   CustomHeaderWidget(),

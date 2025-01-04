@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taski/dependencies.dart';
+import 'package:taski/task/presentation/commom/widgets/custom_app_bar.dart';
 import 'package:taski/task/presentation/home/view_models/home_viewmodel.dart';
-import 'package:taski/task/presentation/home/widgets/custom_app_bar.dart';
 
 class CustomHeaderWidget extends StatelessWidget {
   const CustomHeaderWidget({
@@ -47,14 +47,19 @@ class CustomHeaderWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              'You’ve got '
-              '${viewModel.tasks.length} tasks to do.',
-              style: GoogleFonts.urbanist(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: const Color(0xff8D9CB8),
-              ),
+            ListenableBuilder(
+              listenable: viewModel,
+              builder: (context, _) {
+                return Text(
+                  'You’ve got '
+                  '${viewModel.tasks.length} tasks to do.',
+                  style: GoogleFonts.urbanist(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xff8D9CB8),
+                  ),
+                );
+              },
             ),
           ],
         ),
