@@ -1,4 +1,4 @@
-import 'package:either_dart/src/either.dart';
+import 'package:either_dart/either.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/data/datasources/i_task_datasource.dart';
 import 'package:taski/task/data/models/task_model.dart';

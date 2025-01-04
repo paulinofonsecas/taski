@@ -26,4 +26,16 @@ class DatabaseHelper {
       onCreate: _createDb,
     );
   }
+
+  static Future<Database> initTestDb() async {
+    final databasesPath = await getDatabasesPath();
+    final path = join(databasesPath, 'taski10.db');
+
+    return openDatabase(
+      path,
+      version: 6,
+      onCreate: _createDb,
+    );
+  }
+
 }
