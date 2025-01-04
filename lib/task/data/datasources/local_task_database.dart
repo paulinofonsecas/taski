@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:taski/erros/failure.dart';
 import 'package:taski/task/data/datasources/i_task_datasource.dart';
 import 'package:taski/task/data/models/task_model.dart';
+import 'package:taski/task/domain/entities/task.dart';
 
 class LocalTaskDatasource implements ITaskDatasource {
   LocalTaskDatasource(this._database);
@@ -90,6 +91,19 @@ class LocalTaskDatasource implements ITaskDatasource {
       offset: page * limit,
       orderBy: 'completedAt DESC',
       where: 'isCompleted = 1',
+    );
+
+    return Right(result.map(TaskModel.fromMap).toList());
+  }
+
+  @override
+  Future<Either<Failure, List<Task>>> searchTasks(String text) async {
+    final db = _database;
+
+    final result = await db.query(
+      'tasks',
+      where: 'title LIKE ?',
+      whereArgs: ['%$text%'],
     );
 
     return Right(result.map(TaskModel.fromMap).toList());

@@ -3,6 +3,7 @@ import 'package:taski/app/view/custom_bottom_bar_item.dart';
 import 'package:taski/task/presentation/create/view/create_page.dart';
 import 'package:taski/task/presentation/done/view/done_page.dart';
 import 'package:taski/task/presentation/home/view/home_page.dart';
+import 'package:taski/task/presentation/search/view/search_page.dart';
 
 class DefaultNavigatorPage extends StatefulWidget {
   const DefaultNavigatorPage({super.key});
@@ -17,7 +18,7 @@ class _DefaultNavigatorPageState extends State<DefaultNavigatorPage> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     SizedBox(),
-    Center(child: Text('Tela de SEARCH')),
+    SearchPage(),
     DonePage(),
   ];
 

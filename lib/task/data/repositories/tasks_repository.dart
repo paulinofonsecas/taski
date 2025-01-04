@@ -34,4 +34,9 @@ class TasksRepository implements ITasksRepository {
   Future<Either<Failure, List<Task>>> fetchCompletedTasks(int page, int limit) {
     return _localDatasource.fetchCompletedTasks(page, limit);
   }
+
+  @override
+  Future<Either<Failure, List<Task>>> searchTasks(String text) {
+    return _localDatasource.searchTasks(text);
+  }
 }
